@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>カウントダウンタイマーとニコニコ動画</title>
-    <link href="https://fonts.googleapis.com/css2?family=Yomogi&display=swap" rel="stylesheet">
+    <!-- UDデジタル教科書体 NのGoogle Fontsリンクを追加 -->
+    <link href="https://fonts.googleapis.com/css2?family=UD+Kyoukasho+N&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -29,7 +30,7 @@
             box-sizing: border-box; /* パディングを含めた幅と高さの計算 */
         }
         #header span {
-            font-family: 'Yomogi', cursive;
+            font-family: 'UDデジタル教科書体 N', sans-serif; /* UDデジタル教科書体 Nを指定 */
             margin-right: 10px;
         }
         #countdown {
@@ -50,36 +51,29 @@
         <div id="countdown">カウントダウン中...</div>
     </div>
     <iframe src="https://www.nicovideo.jp/"></iframe>
-
     <script>
         // カウントダウンの終了日時を設定
         const targetDate = new Date("2024-07-14T15:00:00").getTime();
-
         // カウントダウンを更新する関数
         function updateCountdown() {
             const now = new Date().getTime();
             const distance = targetDate - now;
-
             // 時間計算
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
             // カウントダウンを表示
-            document.getElementById("countdown").innerHTML = 
+            document.getElementById("countdown").innerHTML =
                 `${days}日 ${hours}時間 ${minutes}分 ${seconds}秒`;
-
             // カウントダウンが終了したらメッセージを表示
             if (distance < 0) {
                 clearInterval(countdownInterval);
                 document.getElementById("countdown").innerHTML = "カウントダウン終了";
             }
         }
-
         // 1秒ごとにカウントダウンを更新
         const countdownInterval = setInterval(updateCountdown, 1000);
-
         // ページが読み込まれたらすぐにカウントダウンを更新
         updateCountdown();
     </script>
